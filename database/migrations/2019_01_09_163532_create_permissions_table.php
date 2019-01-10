@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriesTable extends Migration
+class CreatePermissionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateCategoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('categories', function (Blueprint $table) {
+        Schema::create('permissions', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('cname');
-            $table->string('ename')->nullable();
-            $table->binary('photo')->nullable();
+            $table->integer('userID')->unsigned();
+            $table->foreign('userID')->references('id')->on('users');
+            $table->string('perm');
             $table->timestamps();
         });
     }
@@ -29,7 +29,6 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('items');
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('permissions');
     }
 }

@@ -16,8 +16,7 @@ class CreateLabelsTable extends Migration
         Schema::create('labels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('mark');
-            $table->integer('userID')->unsigned();
-            $table->foreign('userID')->references('id')->on('users');
+            $table->string('sid'); //  學號
             $table->timestamps();
         });
     }

@@ -27,4 +27,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function permissions()
+    {
+        return $this->hasMany(Permission::class,'id');
+    }
+
+    public function isAdmin()
+    {
+        return $this->permissions()->where('perm', 'admin')->count();
+    }
 }

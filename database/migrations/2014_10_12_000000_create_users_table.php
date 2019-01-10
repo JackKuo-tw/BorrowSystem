@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('sid')->nullable();  // 學號
             $table->string('dept')->nullable(); // 系所
+            $table->string('phone')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

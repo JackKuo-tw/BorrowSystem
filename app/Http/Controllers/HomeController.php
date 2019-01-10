@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use App\Item;
 
 class HomeController extends Controller
 {
@@ -23,6 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $cate = Category::all();
+        return view('home', compact('cate'));
+    }
+
+    public function list($cid)
+    {
+        $items = Item::all()->where('cid', $cid);
+        return view('borrow.list', compact('items'));
     }
 }
